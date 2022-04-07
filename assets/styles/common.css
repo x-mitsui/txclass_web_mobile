@@ -1,0 +1,35 @@
+html{
+  background-color: #efefef;
+  font-size: .14rem;
+}
+html,body,#__nuxt,#__layout,.layout,.container {
+  height: 100%;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-wrapper{
+  overflow: hidden;
+
+  display: flex;
+  z-index: 1;
+
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+}
+
+.scroll-wrapper .scroll-content{
+  background-color: #efefef;
+}
+
+.page-enter-active, .page-leave-active{
+  transition: opacity .1s;
+}
+
+.page-enter, .page-leave{
+  opacity: 0;
+}
