@@ -1,0 +1,12 @@
+const fs = require('fs')
+const consola = require('consola')
+const reader = fs.createReadStream('./nuxtConfigs/index.js')
+const writer = fs.createWriteStream('./nuxt.config.js')
+writer.on('pipe', (src) => {
+  consola.start('Something is piping into the writer.')
+})
+writer.on('unpipe', (src) => {
+  consola.success('Something has stopped piping into the writer.')
+})
+
+reader.pipe(writer)

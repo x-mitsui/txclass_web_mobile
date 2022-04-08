@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "DEBUG=log:* nuxt ",
-    "build": "nuxt build",
-    "start": "nuxt start",
+    "dev": "DEBUG=log:* node nuxtConfigs/cp-nuxt-config && nuxt ",
+    "build": "node nuxtConfigs/cp-nuxt-config && nuxt build",
+    "start": "nuxt generate && nuxt start",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",

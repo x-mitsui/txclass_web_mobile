@@ -4,7 +4,7 @@ import { getHomeData, getListData } from './server/controllers/Index'
 
 import * as AxiosProxyConfig from './nuxtConfigs/axios_proxy.conf'
 import * as postcssConf from './nuxtConfigs/postcss.conf'
-import webpackConf from './nuxtConfigs/webpack.conf'
+import { webpackConf } from './nuxtConfigs/webpack.conf'
 
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
@@ -78,13 +78,15 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     //   vendor: ['axios'], // 为防止重复打包
-    extend(config, { isClient }) {
+    extend(config, { isDev, isClient, isServer, loaders }) {
       // Extend only webpack config for client-bundle
-      if (isClient) {
-        config = { ...webpackConf }
-      }
+      const webpackConfig = webpackConf(isClient)
+
+      config.plugins = [...config.plugins, ...webpackConfig.plugins]
+      config.devtool = webpackConfig.devtool
     },
     ...postcssConf,
+    // plugins: [...WebpackPlugins()],
   },
 
   router: {
