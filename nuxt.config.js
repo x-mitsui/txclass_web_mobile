@@ -1,19 +1,11 @@
 // import serveStatic from 'serve-static'
 
 import { getHomeData, getListData } from './server/controllers/Index'
-// eslint-disable-next-line nuxt/no-cjs-in-config
-// const px2rem = require('postcss-plugin-px2rem')
 
-const px2remOpts = {
-  rootValue: 100,
-  unitPrecision: 5,
-  propList: ['*'],
-  selectorBlackList: ['html'], // 注意html不要变咩
-  replace: true,
-  mediaQuery: false,
-  minPixelValue: 0,
-  exclude: /node_modules/i,
-}
+import * as AxiosProxyConfig from './nuxtConfigs/axios_proxy.conf'
+import * as postcssConf from './nuxtConfigs/postcss.conf'
+import webpackConf from './nuxtConfigs/webpack.conf'
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -76,27 +68,7 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: ['@nuxtjs/axios', '@nuxtjs/proxy'],
 
-  axios: {
-    proxy: true,
-    credential: true,
-    retry: { retris: 3 },
-    // baseUrl: 'http://localhost:3008/api',
-    prefix: '/api',
-    headers: {
-      common: {},
-      get: {},
-      post: {},
-    },
-  },
-  proxy: {
-    '/api': {
-      target: 'http://jsppapi.codemongo.com/', // 目标接口域名
-      changeOrigin: true,
-      pathRewrite: {
-        '^/api': '/', // 把 /api 替换成 /
-      },
-    },
-  },
+  ...AxiosProxyConfig,
   server: {
     port: 3008, // default: 3000
     host: '0.0.0.0', // default: localhost,
@@ -109,24 +81,10 @@ export default {
     extend(config, { isClient }) {
       // Extend only webpack config for client-bundle
       if (isClient) {
-        config.devtool = 'source-map'
-        // config.module = {
-        //   rules: [
-        //     {
-        //       test: /\.css$/,
-        //       loader: ['style-loader', 'css-loader', 'postcss-loader'],
-        //     },
-        //   ],
-        // }
-
-        // config.
+        config = { ...webpackConf }
       }
     },
-    postcss: {
-      plugins: {
-        'postcss-plugin-px2rem': px2remOpts,
-      },
-    },
+    ...postcssConf,
   },
 
   router: {
