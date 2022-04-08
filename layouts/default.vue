@@ -1,8 +1,6 @@
 <template>
-  <div>
-    <h1>Header</h1>
+  <div class="layouts">
     <Nuxt />
-    <h1>Footer</h1>
   </div>
 </template>
 <script>
