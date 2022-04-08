@@ -1,5 +1,19 @@
 // import serveStatic from 'serve-static'
+
 import { getHomeData, getListData } from './server/controllers/Index'
+// eslint-disable-next-line nuxt/no-cjs-in-config
+// const px2rem = require('postcss-plugin-px2rem')
+
+const px2remOpts = {
+  rootValue: 100,
+  unitPrecision: 5,
+  propList: ['*'],
+  selectorBlackList: ['html'], // 注意html不要变咩
+  replace: true,
+  mediaQuery: false,
+  minPixelValue: 0,
+  exclude: /node_modules/i,
+}
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -41,9 +55,13 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '@/assets/scripts/common.js', ssr: false },
-    { src: '@/plugins/vue-awesome-swiper.js', ssr: false },
-    { src: '@/plugins/vue-lazyload.js', ssr: false },
+    // 注意插件先后顺序
+    { src: '@/plugins/log.js' },
+    { src: '@/assets/scripts/common.js', mode: 'client' },
+    { src: '@/plugins/vue-awesome-swiper.js', mode: 'client' },
+    { src: '@/plugins/vue-lazyload.js', mode: 'client' },
+    { src: '@/plugins/intercepter.js' },
+    { src: '@/plugins/hello.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -62,6 +80,13 @@ export default {
     proxy: true,
     credential: true,
     retry: { retris: 3 },
+    // baseUrl: 'http://localhost:3008/api',
+    prefix: '/api',
+    headers: {
+      common: {},
+      get: {},
+      post: {},
+    },
   },
   proxy: {
     '/api': {
@@ -81,6 +106,27 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     //   vendor: ['axios'], // 为防止重复打包
+    extend(config, { isClient }) {
+      // Extend only webpack config for client-bundle
+      if (isClient) {
+        config.devtool = 'source-map'
+        // config.module = {
+        //   rules: [
+        //     {
+        //       test: /\.css$/,
+        //       loader: ['style-loader', 'css-loader', 'postcss-loader'],
+        //     },
+        //   ],
+        // }
+
+        // config.
+      }
+    },
+    postcss: {
+      plugins: {
+        'postcss-plugin-px2rem': px2remOpts,
+      },
+    },
   },
 
   router: {
