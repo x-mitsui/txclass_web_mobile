@@ -1,12 +1,50 @@
 <template>
   <div>
     <CommonMobileHeader :back-icon-show="false" :list-icon-show="true" />
-    <nuxt-link :to="{ query: { id: 1 }, path: '/home' }">Home</nuxt-link>
-    <ul>
-      <li v-for="item in list" :key="item.id">
-        {{ item.courseName }}
-      </li>
-    </ul>
+    <common-scroll-wrapper>
+      <hr />
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+      provident ipsam, dicta minima perspiciatis, magni, ab laudantium sint
+      expedita consectetur pariatur quia sit temporibus obcaecati doloribus
+      cupiditate error quaerat. Obcaecati! Lorem ipsum dolor sit amet
+      consectetur adipisicing elit. Assumenda provident ipsam, dicta minima uia
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
+      expedita consectetur pariatur quia sit temporibus obcaecati doloribus
+      cupiditate error quaerat. Obcaecati! Lorem ipsum dolor sit amet
+      consectetur adipisicing elit. Assumenda provident ipsam, dicta minima
+      perspiciatis, magni, ab laudantium sint expedita consectetur pariatur quia
+      sit temporibus obcaecati doloribus cupiditate error quaerat. Obcaecati!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+      provident ipsam, dicta minima perspiciatis, magni, ab laudantium sint
+      expedita consectetur pariatur quia sit temporibus obcaecati doloribus
+      cupiditate error quaerat. Obcaecati! Lorem ipsum dolor sit amet
+      consectetur adipisicing elit. Assumenda provident ipsam, dicta minima
+      perspiciatis, magni, ab laudantium sint expedita consectetur pariatur quia
+      sit temporibus obcaecati doloribus cupiditate error quaerat. Obcaecati!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+      provident ipsam, dicta minima perspiciatis, magni, ab laudantium sint eima
+      perspiciatis, magni, ab laudantium sint expedita consectetur pariatur quia
+      sit temporibus obcaecati doloribus cupiditate error quaerat. Obcaecati!
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
+      provident ipsam, dicta minima perspiciatis, magni, ab laudantium sint
+      expedita consectetur pariatur quia sit temporibus obcaecati doloribus
+      cupiditate error quaerat. Obcaecati!
+      <hr />
+    <common-footer />
+    </common-scroll-wrapper>
   </div>
 </template>
 

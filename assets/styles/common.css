@@ -2,7 +2,7 @@ body{
   background-color: #efefef;
   font-size: 14px;
 }
-html,body,#__nuxt,#__layout,.layout,.container {
+html,body,#__nuxt,#__layout,.layouts,.container {
   height: 100%;
 }
 

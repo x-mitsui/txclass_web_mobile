@@ -1,6 +1,7 @@
 <template>
   <div>
     <CommonMobileHeader :back-icon-show="true" :list-icon-show="false" />
+    <CommonFooter />
   </div>
 </template>
 
