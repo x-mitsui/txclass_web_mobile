@@ -1,63 +1,22 @@
 <template>
   <div>
     <CommonMobileHeader :back-icon-show="false" :list-icon-show="true" />
-    <common-scroll-wrapper>
-      <hr />
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-      provident ipsam, dicta minima perspiciatis, magni, ab laudantium sint
-      expedita consectetur pariatur quia sit temporibus obcaecati doloribus
-      cupiditate error quaerat. Obcaecati! Lorem ipsum dolor sit amet
-      consectetur adipisicing elit. Assumenda provident ipsam, dicta minima uia
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      sit temporibus obcaecati doloribus perspiciatis, magni, ab laudantium sint
-      expedita consectetur pariatur quia sit temporibus obcaecati doloribus
-      cupiditate error quaerat. Obcaecati! Lorem ipsum dolor sit amet
-      consectetur adipisicing elit. Assumenda provident ipsam, dicta minima
-      perspiciatis, magni, ab laudantium sint expedita consectetur pariatur quia
-      sit temporibus obcaecati doloribus cupiditate error quaerat. Obcaecati!
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-      provident ipsam, dicta minima perspiciatis, magni, ab laudantium sint
-      expedita consectetur pariatur quia sit temporibus obcaecati doloribus
-      cupiditate error quaerat. Obcaecati! Lorem ipsum dolor sit amet
-      consectetur adipisicing elit. Assumenda provident ipsam, dicta minima
-      perspiciatis, magni, ab laudantium sint expedita consectetur pariatur quia
-      sit temporibus obcaecati doloribus cupiditate error quaerat. Obcaecati!
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-      provident ipsam, dicta minima perspiciatis, magni, ab laudantium sint eima
-      perspiciatis, magni, ab laudantium sint expedita consectetur pariatur quia
-      sit temporibus obcaecati doloribus cupiditate error quaerat. Obcaecati!
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-      provident ipsam, dicta minima perspiciatis, magni, ab laudantium sint
-      expedita consectetur pariatur quia sit temporibus obcaecati doloribus
-      cupiditate error quaerat. Obcaecati!
-      <hr />
-    <common-footer />
-    </common-scroll-wrapper>
+    <commonScrollWrapper>
+      <IndexSwipper :slider-data="sliderData" />
+      <commonFooter />
+    </commonScrollWrapper>
   </div>
 </template>
 
 <script>
 export default {
   name: 'IndexPage',
-  loading: false,
   async asyncData({ $log, $axios, $hello }) {
-    const res = await $axios.$post('/admin/login_action', {
-      username: 'admin',
-      password: 'admin',
-    })
-    $log.info('res:', res)
+    const sliderData = await $axios.$get('/get_home_data')
+    console.log('sliderData:', typeof sliderData)
+    return {
+      sliderData,
+    }
   },
 
   // layout: 'default',
@@ -82,7 +41,7 @@ export default {
   //   return { list: res.data.data.courseData }
   // },
   data() {
-    return { list: [] }
+    return { list: [], sliderData: [] }
   },
 }
 </script>

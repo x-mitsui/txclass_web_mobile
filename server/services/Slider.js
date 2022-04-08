@@ -5,8 +5,9 @@ class SliderService {
     return await SliderModel.findAll({
       where: { status: 1 },
       attributes: {
-        exclude: ['cid', 'imgUrl', 'createdAt', 'updatedAt']
-      }
+        exclude: ['cid', 'imgUrl', 'createdAt', 'updatedAt'],
+      },
+      raw: true,
     })
   }
 }

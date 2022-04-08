@@ -1,3 +1,4 @@
+import { URL } from '../config/config'
 export const axios = {
   proxy: true,
   credential: true,
@@ -12,7 +13,7 @@ export const axios = {
 }
 export const proxy = {
   '/api': {
-    target: 'http://jsppapi.codemongo.com/', // 目标接口域名
+    target: URL.API_BASE_URL, // 目标接口域名
     changeOrigin: true,
     pathRewrite: {
       '^/api': '/', // 把 /api 替换成 /
