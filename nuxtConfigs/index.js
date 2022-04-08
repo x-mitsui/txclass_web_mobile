@@ -44,7 +44,10 @@ export default {
     '@/assets/styles/border.css',
     'swiper/css/swiper.min.css',
   ],
-
+  loading: {
+    color: '#409EFF',
+    height: '2px',
+  },
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     // 注意插件先后顺序
