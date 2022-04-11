@@ -1,10 +1,14 @@
 <template>
   <div>
     <CommonMobileHeader :back-icon-show="false" :list-icon-show="true" />
-    <commonScrollWrapper>
+    <CommonScrollWrapper>
       <IndexSwipper :slider-data="sliderData" />
-      <commonFooter />
-    </commonScrollWrapper>
+      <CommonMainTitle :title="'前端进修班'" :link-show="true" />
+      <IndexCourseNav :nav-data="navData" />
+      <CommonMainTitle :title="'平台合作方'" :link-show="true" />
+      <CommonMainTitle title="官方推荐课程" :link-show="true" />
+      <CommonFooter />
+    </CommonScrollWrapper>
   </div>
 </template>
 
@@ -12,10 +16,11 @@
 export default {
   name: 'IndexPage',
   async asyncData({ $log, $axios, $hello }) {
-    const sliderData = await $axios.$get('/get_home_data')
+    const { sliderData, navData } = await $axios.$get('/get_home_data')
     console.log('sliderData:', typeof sliderData)
     return {
       sliderData,
+      navData,
     }
   },
 
@@ -41,7 +46,7 @@ export default {
   //   return { list: res.data.data.courseData }
   // },
   data() {
-    return { list: [], sliderData: [] }
+    return { list: [], sliderData: [], navData: [] }
   },
 }
 </script>

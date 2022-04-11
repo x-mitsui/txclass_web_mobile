@@ -1,5 +1,5 @@
-// const navData = require('../configs/nav')
-// const linkData = require('../configs/links')
+const navData = require('../configs/nav')
+const linkData = require('../configs/links')
 
 // const { qr } = require('../configs/qr')
 
@@ -10,10 +10,10 @@ const { getSliderData } = require('../services/Slider')
 
 class Index {
   async getHomeData(req, res, next) {
-    console.log('arguments', arguments)
+    // console.log('arguments', arguments)
     const sliderData = await getSliderData()
     // console.log('11111:', sliderData)
-    res.end(JSON.stringify(sliderData))
+    res.end(JSON.stringify({ sliderData, navData, linkData }))
   }
 
   getListData(req, res, next) {
