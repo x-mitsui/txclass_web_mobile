@@ -6,6 +6,7 @@
       <CommonMainTitle :title="'前端进修班'" :link-show="true" />
       <IndexCourseNav :nav-data="navData" />
       <CommonMainTitle :title="'平台合作方'" :link-show="true" />
+      <IndexCooperation :link-data="linkData" />
       <CommonMainTitle title="官方推荐课程" :link-show="true" />
       <CommonFooter />
     </CommonScrollWrapper>
@@ -16,11 +17,14 @@
 export default {
   name: 'IndexPage',
   async asyncData({ $log, $axios, $hello }) {
-    const { sliderData, navData } = await $axios.$get('/get_home_data')
+    const { sliderData, navData, linkData } = await $axios.$get(
+      '/get_home_data'
+    )
     console.log('sliderData:', typeof sliderData)
     return {
       sliderData,
       navData,
+      linkData,
     }
   },
 
@@ -46,7 +50,7 @@ export default {
   //   return { list: res.data.data.courseData }
   // },
   data() {
-    return { list: [], sliderData: [], navData: [] }
+    return { list: [], sliderData: [], navData: [], linkData: [] }
   },
 }
 </script>
