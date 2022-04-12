@@ -1,7 +1,13 @@
 <template>
   <div class="recom-course-wrapper">
     <IndexRecomCourseItem
-      v-for="item of [...recomCourseData, ...recomCourseData]"
+      v-for="item of [
+        ...recomCourseData,
+        ...[...recomCourseData].map((it) => {
+          it.id = 2
+          return it
+        }),
+      ]"
       :key="item.id"
       :img-base="IMG_BASE"
       :item="item"
