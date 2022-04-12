@@ -6,17 +6,19 @@ const linkData = require('../configs/links')
 const { getSliderData } = require('../services/Slider')
 const { getRecomCourseData } = require('../services/RecomCourse')
 const { getCollectionData } = require('../services/Collection')
-// const { getStarTeacherData } = require('../services/Teacher')
+const { getStarTeacherData } = require('../services/Teacher')
 
 class Index {
   async getHomeData(req, res, next) {
     // const sliderData = await getSliderData()
     // const sliderData = await getRecomCourseData()
-    const [sliderData, recomCourseData, collectionData] = await Promise.all([
-      getSliderData(),
-      getRecomCourseData(),
-      getCollectionData(),
-    ])
+    const [sliderData, recomCourseData, collectionData, teacherData] =
+      await Promise.all([
+        getSliderData(),
+        getRecomCourseData(),
+        getCollectionData(),
+        getStarTeacherData(),
+      ])
 
     res.end(
       JSON.stringify({
@@ -25,6 +27,7 @@ class Index {
         linkData,
         recomCourseData,
         collectionData,
+        teacherData,
       })
     )
   }
