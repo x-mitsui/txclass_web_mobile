@@ -7,11 +7,10 @@ const { getSliderData } = require('../services/Slider')
 const { getRecomCourseData } = require('../services/RecomCourse')
 const { getCollectionData } = require('../services/Collection')
 const { getStarTeacherData } = require('../services/Teacher')
+const { getCourseTabData } = require('../services/CourseTab')
 
 class Index {
   async getHomeData(req, res, next) {
-    // const sliderData = await getSliderData()
-    // const sliderData = await getRecomCourseData()
     const [sliderData, recomCourseData, collectionData, teacherData] =
       await Promise.all([
         getSliderData(),
@@ -32,10 +31,14 @@ class Index {
     )
   }
 
-  getListData(req, res, next) {
-    // ctx.body = {}
+  async getListData(req, res, next) {
+    const courseTabData = await getCourseTabData()
 
-    next()
+    res.end(
+      JSON.stringify({
+        courseTabData,
+      })
+    )
   }
 }
 

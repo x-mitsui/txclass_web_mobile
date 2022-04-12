@@ -22,7 +22,7 @@ import { URL } from '@/config/config'
 export default {
   name: 'TeacherItem',
   props: {
-    item: Object,
+    item: { type: Object, default: () => ({}) },
   },
   data() {
     return {
@@ -34,7 +34,7 @@ export default {
 
 <style lang="less" scoped>
 .teacher-item {
-  width: 47.2%;
+  width: 47%;
   padding-right: 10px;
   margin-bottom: 10px;
 
