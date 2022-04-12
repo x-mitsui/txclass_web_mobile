@@ -4,16 +4,29 @@ const linkData = require('../configs/links')
 // const { qr } = require('../configs/qr')
 
 const { getSliderData } = require('../services/Slider')
-// const { getRecomCourseData } = require('../services/RecomCourse')
-// const { getCollectionData } = require('../services/Collection')
+const { getRecomCourseData } = require('../services/RecomCourse')
+const { getCollectionData } = require('../services/Collection')
 // const { getStarTeacherData } = require('../services/Teacher')
 
 class Index {
   async getHomeData(req, res, next) {
-    // console.log('arguments', arguments)
-    const sliderData = await getSliderData()
-    // console.log('11111:', sliderData)
-    res.end(JSON.stringify({ sliderData, navData, linkData }))
+    // const sliderData = await getSliderData()
+    // const sliderData = await getRecomCourseData()
+    const [sliderData, recomCourseData, collectionData] = await Promise.all([
+      getSliderData(),
+      getRecomCourseData(),
+      getCollectionData(),
+    ])
+
+    res.end(
+      JSON.stringify({
+        sliderData,
+        navData,
+        linkData,
+        recomCourseData,
+        collectionData,
+      })
+    )
   }
 
   getListData(req, res, next) {

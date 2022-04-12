@@ -9,6 +9,7 @@
       <IndexCooperation :link-data="linkData" />
       <CommonMainTitle title="官方推荐课程" :link-show="true" />
       <IndexRecomCourse :recom-course-data="recomCourseData" />
+      <IndexCollection :collection-data="collectionData" />
       <CommonFooter />
     </CommonScrollWrapper>
   </div>
@@ -18,14 +19,15 @@
 export default {
   name: 'IndexPage',
   async asyncData({ $log, $axios, $hello }) {
-    const { sliderData, navData, linkData, recomCourseData } =
+    const { sliderData, navData, linkData, recomCourseData, collectionData } =
       await $axios.$get('/get_home_data')
-    console.log('sliderData:', typeof sliderData)
+    // console.log('sliderData:', typeof sliderData)
     return {
       sliderData,
       navData,
       linkData,
       recomCourseData,
+      collectionData,
     }
   },
 
@@ -57,6 +59,7 @@ export default {
       navData: [],
       linkData: [],
       recomCourseData: [],
+      collectionData: [],
     }
   },
 }

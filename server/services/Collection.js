@@ -5,19 +5,20 @@ class CollectionService {
     let result = await CollectionModel.findAll({
       where: { status: 1 },
       attributes: {
-        exclude: ['cid', 'posterUrl', 'createdAt', 'updatedAt']
+        exclude: ['cid', 'posterUrl', 'createdAt', 'updatedAt'],
       },
-      raw: true
+      raw: true,
     })
-    let promiseArr = result.map(async (item, index) => {
-      let ids = item.courseIdList.split(',').map((item) => Number(item))
-      let collectionsData = await getCollectionCourseData(ids)
-      console.log('collectionsData:', collectionsData)
+    const promiseArr = result.map(async (item, index) => {
+      const ids = item.courseIdList.split(',').map((item) => Number(item))
+      const collectionsData = await getCollectionCourseData(ids)
+      // console.log('collectionsData:', collectionsData)
       item.courseDataList = collectionsData
       return item
     })
     // async返回的为包裹结果的Promise对象
     result = await Promise.all(promiseArr)
+
     return result
   }
 }
