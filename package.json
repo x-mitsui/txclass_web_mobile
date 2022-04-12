@@ -14,9 +14,10 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@better-scroll/core": "^2.4.2",
+    "@better-scroll/pull-down": "^2.4.2",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/proxy": "^2.1.0",
-    "better-scroll": "^2.4.2",
     "core-js": "^3.19.3",
     "cross-env": "^7.0.3",
     "mysql2": "^2.3.3",

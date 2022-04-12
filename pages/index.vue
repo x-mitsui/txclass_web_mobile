@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="root-page">
     <CommonMobileHeader :back-icon-show="false" :list-icon-show="true" />
-    <CommonScrollWrapper>
+    <CommonScrollWrapper :on-pull-down="onPullDown">
       <IndexSwipper :slider-data="sliderData" />
       <CommonMainTitle :title="'前端进修班'" :link-show="true" />
       <IndexCourseNav :nav-data="navData" />
@@ -21,6 +21,7 @@
 <script>
 export default {
   name: 'IndexPage',
+  // 运行在服务端
   async asyncData({ $log, $axios, $hello }) {
     const {
       sliderData,
@@ -73,7 +74,33 @@ export default {
       teacherData: [],
     }
   },
+  methods: {
+    async getHomeData() {
+      const {
+        sliderData,
+        navData,
+        linkData,
+        recomCourseData,
+        collectionData,
+        teacherData,
+      } = await this.$axios.$get('/get_home_data')
+      this.sliderData = sliderData
+      this.navData = navData
+      this.linkData = linkData
+      this.recomCourseData = recomCourseData
+      this.collectionData = collectionData
+      this.teacherData = teacherData
+    },
+    async onPullDown(scroll) {
+      console.log('scroll?:', scroll)
+      await this.getHomeData()
+    },
+  },
 }
 </script>
 
-<style></style>
+<style>
+.root-page {
+  height: 100%;
+}
+</style>

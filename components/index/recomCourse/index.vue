@@ -3,7 +3,7 @@
     <IndexRecomCourseItem
       v-for="item of [
         ...recomCourseData,
-        ...[...recomCourseData].map((it) => {
+        ...[...JSON.parse(JSON.stringify(recomCourseData))].map((it) => {
           it.id = 2
           return it
         }),
