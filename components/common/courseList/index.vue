@@ -1,6 +1,6 @@
 <template>
   <div>
-    <CommonCollectionListItem
+    <CommonCourseListItem
       v-for="item of courseData"
       :key="item.id"
       :item="item"
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'CollectionListCpn',
+  name: 'CommonCourseListCpn',
   props: {
     courseData: {
       type: Array,
