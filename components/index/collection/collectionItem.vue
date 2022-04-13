@@ -1,7 +1,7 @@
 <template>
   <div class="collection-item">
     <CommonMainTitle :title="item.title" :link-show="true"> </CommonMainTitle>
-    <CommonCollectionList :course-data="item.courseDataList" />
+    <CommonCourseList :course-data="item.courseDataList" />
   </div>
 </template>
 
