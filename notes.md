@@ -30,4 +30,6 @@ https://developer.mozilla.org/zh-CN/docs/Web/CSS/width
 
 ### /Users/mac/Documents/study/projects/txclass_web_mobile/components/common/collectionList/listItem.vue 多行布局和两栏布局
 
-### 隐藏滚动条
+### list 隐藏滚动条
+
+### list 监听 vuex 变量
