@@ -29,3 +29,5 @@ https://developer.mozilla.org/zh-CN/docs/Web/CSS/width
 ### padding 不规则布局
 
 ### /Users/mac/Documents/study/projects/txclass_web_mobile/components/common/collectionList/listItem.vue 多行布局和两栏布局
+
+### 隐藏滚动条

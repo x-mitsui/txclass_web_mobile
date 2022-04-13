@@ -1,10 +1,14 @@
 export const state = () => ({
   token: '',
+  id: 0,
 })
 
 export const mutations = {
   setToken(state, token) {
     state.token = token
+  },
+  selectTab(state, id) {
+    state.id = id
   },
 }
 

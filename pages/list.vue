@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="list-page">
     <CommonMobileHeader :back-icon-show="true" :list-icon-show="false" />
+    <ListTab :tab-data="courseTabData" />
     <CommonScrollWrapper :on-pull-down="onPullDown"> </CommonScrollWrapper>
     <CommonFooter />
   </div>
@@ -28,10 +29,14 @@ export default {
       this.courseTabData = [{ id: 0, title: '全部课程' }].concat(courseTabData)
     },
     async onPullDown(scroll) {
-      await this.getHomeData()
+      await this.getListData()
     },
   },
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.list-page {
+  height: 100%;
+}
+</style>
