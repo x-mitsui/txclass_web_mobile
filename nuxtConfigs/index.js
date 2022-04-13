@@ -84,10 +84,14 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    publicPath: '//txmobileres.codemongo.com/',
     //   vendor: ['axios'], // 为防止重复打包
-    extend(config, { isDev, isClient, isServer, loaders }) {
+    extend(config, { isClient, isDev, isServer }) {
+      // console.log('www:', www)
+      // // eslint-disable-next-line no-constant-condition
+      // // if (2 - 1 === 1) return
       // Extend only webpack config for client-bundle
-      const webpackConfig = webpackConf(isClient)
+      const webpackConfig = webpackConf({ isClient, isDev, isServer })
 
       config.plugins = [...config.plugins, ...webpackConfig.plugins]
       config.devtool = webpackConfig.devtool

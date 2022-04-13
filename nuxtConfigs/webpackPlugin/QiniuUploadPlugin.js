@@ -1,6 +1,6 @@
 const path = require('path')
 const qiniu = require('qiniu')
-
+const consola = require('consola')
 // 上传文件到七牛云
 class QiniuUploadPlugin {
   constructor(qiniuConfig) {
@@ -42,40 +42,49 @@ class QiniuUploadPlugin {
   apply(compiler) {
     compiler.hooks.compilation.tap('QiniuUploadPlugin', (compilation) => {
       compilation.outputOptions.publicPath = this.qiniuConfig.publicPath
-      this.absolutePath = compilation.outputOptions.path
+      this.absolutePath = compilation.outputOptions.publicPath
     })
 
-    compiler.hooks.done.tapAsync('QiniuUploadPlugin', (data, callback) => {
-      // 先返回构建结果，然后异步上传
-      callback()
-      console.log('data:', data)
-      const assetsPromise = []
-      console.log('开始上传七牛云...')
-      Object.keys(data.compilation.assets).forEach((file) => {
-        // 上传非html文件
-        if (!/.html$/.test(file)) {
-          assetsPromise.push(this.uploadFile(file))
-        }
-      })
-      Promise.all(assetsPromise)
-        .then((res) => {
-          console.log('七牛云上传完毕!')
+    compiler.hooks.afterEmit.tapAsync(
+      'QiniuUploadPlugin',
+      (compilation, callback) => {
+        // 先返回构建结果，然后异步上传
+        // console.log('百度度多多所所所所所:', '百度度多多所所所所所')
+        // console.log('1次:', data) // console.log('data:', data)
+        consola.log('data:', this.qiniuConfig.publicPath)
+        callback()
+        const assetsPromise = []
+        consola.log('开始上传七牛云...')
+        Object.keys(compilation.assets).forEach((file) => {
+          // 上传非html文件
+          if (!/.html$/.test(file) && !/server/.test(file)) {
+            consola.log('file:', file)
+
+            assetsPromise.push(this.uploadFile(file))
+          }
         })
-        .catch((err) => {
-          console.log(err)
-        })
-    })
+        Promise.all(assetsPromise)
+          .then((res) => {
+            consola.log('七牛云上传完毕!')
+          })
+          .catch((err) => {
+            consola.log(err)
+          })
+      }
+    )
   }
 
   uploadFile(filename, coverUploadToken) {
     const key = filename
-    const localFile = path.join(this.absolutePath || '', filename)
+
+    const localFile = path.join(this.qiniuConfig.publicPath || '', filename)
     return new Promise((resolve, reject) => {
       // 文件上传
-      console.log(`上传文件${key}...`)
+      consola.log(`上传文件${key}...`)
       const uploadToken =
         coverUploadToken || this.qiniuAuthenticationConfig.uploadToken
       const putExtra = new qiniu.form_up.PutExtra()
+
       this.qiniuAuthenticationConfig.formUploader.putFile(
         uploadToken,
         key,
@@ -87,15 +96,15 @@ class QiniuUploadPlugin {
           }
           if (respInfo.statusCode == 200) {
             resolve(respInfo)
-            console.log(`文件：${key}，上传成功！`)
+            consola.log(`文件：${key}，上传成功！`)
           } else if (
             this.qiniuConfig.cover &&
             (respInfo.status === 614 || respInfo.statusCode === 614)
           ) {
-            console.log(`文件：${key}，已存在，尝试覆盖上传！`)
+            consola.log(`文件：${key}，已存在，尝试覆盖上传！`)
             resolve(this.uploadFile(filename, this.coverUploadFile(filename)))
           } else {
-            console.log(`文件：${key}，上传失败！`)
+            consola.log(`文件：${key}，上传失败！`)
             reject(respInfo)
           }
         }

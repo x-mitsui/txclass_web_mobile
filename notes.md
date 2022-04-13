@@ -37,3 +37,5 @@ https://developer.mozilla.org/zh-CN/docs/Web/CSS/width
 ### calc 使用
 
 ### 鼠标拖动下拉刷新
+
+### 打印日志过长产生了和 server 一起产生的 bug
