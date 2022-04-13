@@ -1,5 +1,9 @@
 <template>
-  <div ref="bsWrapper" class="pulldown-bswrapper">
+  <div
+    ref="bsWrapper"
+    class="pulldown-bswrapper"
+    :style="{ height: wrapperHeight }"
+  >
     <div class="pulldown-scroller">
       <div class="pulldown-tips-wrapper">
         <div v-show="beforePullDown">
@@ -22,14 +26,17 @@
 <script>
 import BScroll from '@better-scroll/core'
 import PullDown from '@better-scroll/pull-down'
+import MouseWheel from '@better-scroll/mouse-wheel'
 
 BScroll.use(PullDown)
+BScroll.use(MouseWheel)
 
 export default {
   name: 'ScrollWrapper',
   scroll: null,
   props: {
     onPullDown: { type: Function, default: () => {} },
+    wrapperHeight: { type: String, default: 'calc(100% - 45px)' },
   },
   data() {
     return {
@@ -47,7 +54,11 @@ export default {
       const bsWrapper = this.$refs.bsWrapper
       // const content = this.$refs.content
       this.bscroll = new BScroll(bsWrapper, {
-        mouseWheel: true,
+        mouseWheel: {
+          speed: 20,
+          dampingFactor: 0.05,
+          easeTime: 30,
+        },
         click: true,
         tap: 'tap',
         // bounceTime: 800,
@@ -72,6 +83,9 @@ export default {
       })
     },
     bindEvents() {
+      setTimeout(() => {
+        this.bscroll.refresh()
+      }, 500)
       // this.bscroll.on('pullingDown', this.onPullDown.bind(null, this.bscroll))
       this.bscroll.on('pullingDown', async () => {
         this.beforePullDown = false
@@ -98,7 +112,7 @@ export default {
 <style lang="less" scoped>
 .pulldown-bswrapper {
   position: relative;
-  height: 100%;
+  height: calc(100% - 45px);
   overflow: hidden;
 }
 

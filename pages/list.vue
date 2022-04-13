@@ -2,10 +2,13 @@
   <div class="list-page">
     <CommonMobileHeader :back-icon-show="true" :list-icon-show="false" />
     <ListTab :tab-data="courseTabData" />
-    <CommonScrollWrapper :on-pull-down="onPullDown">
+    <CommonScrollWrapper
+      :on-pull-down="onPullDown"
+      :wrapper-height="'calc(100% - 80px)'"
+    >
       <CommonCourseList :course-data="curCourseData" />
+      <CommonFooter />
     </CommonScrollWrapper>
-    <CommonFooter />
   </div>
 </template>
 

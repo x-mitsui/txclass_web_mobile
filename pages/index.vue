@@ -92,7 +92,7 @@ export default {
       this.teacherData = teacherData
     },
     async onPullDown(scroll) {
-      console.log('scroll?:', scroll)
+      // console.log('scroll?:', scroll)
       await this.getHomeData()
     },
   },
