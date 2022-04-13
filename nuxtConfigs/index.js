@@ -1,6 +1,10 @@
 // import serveStatic from 'serve-static'
 
-import { getHomeData, getListData } from './server/controllers/Index'
+import {
+  getHomeData,
+  getCourseTabData,
+  getCourseData,
+} from './server/controllers/Index'
 
 import * as AxiosProxyConfig from './nuxtConfigs/axios_proxy.conf'
 import * as postcssConf from './nuxtConfigs/postcss.conf'
@@ -103,7 +107,8 @@ export default {
     // Will register file from project server-middleware directory to handle /server-middleware/* requires
     { path: '/server-middleware', handler: '~/server-middleware/index.js' },
     { path: '/get_home_data', handler: getHomeData },
-    { path: '/get_list_data', handler: getListData },
+    { path: '/get_course_tab_data', handler: getCourseTabData },
+    { path: '/get_course_data', handler: getCourseData },
 
     // We can create custom instances too
     // { path: '/static2', handler: serveStatic(__dirname + '/static2') }
