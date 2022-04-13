@@ -948,6 +948,13 @@
   dependencies:
     "@better-scroll/shared-utils" "^2.4.2"
 
+"@better-scroll/mouse-wheel@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.npmmirror.com/@better-scroll/mouse-wheel/-/mouse-wheel-2.4.2.tgz#dea70a60dc2a3795ef6ad569d2dea5b4c7e9af4c"
+  integrity sha512-dLc8vlYkSYN9AQEo4NDPQloPhscCV17TY98JUBcio4I2STDlYYIQqofqm1GQPfByfK9f057DnrcgZ/bPVx7PTA==
+  dependencies:
+    "@better-scroll/core" "^2.4.2"
+
 "@better-scroll/pull-down@^2.4.2":
   version "2.4.2"
   resolved "https://registry.npmmirror.com/@better-scroll/pull-down/-/pull-down-2.4.2.tgz#6b98b28bd73e9b694b0857a9c73879e70339cb96"
