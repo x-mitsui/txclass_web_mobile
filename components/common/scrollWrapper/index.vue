@@ -1,24 +1,20 @@
 <template>
-  <div class="pulldown">
-    <div ref="bsWrapper" class="pulldown-bswrapper">
-      <div class="pulldown-scroller">
-        <div class="pulldown-wrapper">
-          <div v-show="beforePullDown">
-            <span>下拉更新</span>
+  <div ref="bsWrapper" class="pulldown-bswrapper">
+    <div class="pulldown-scroller">
+      <div class="pulldown-tips-wrapper">
+        <div v-show="beforePullDown">
+          <span>下拉更新</span>
+        </div>
+        <div v-show="!beforePullDown">
+          <div v-show="isPullingDown">
+            <span>加载中...</span>
           </div>
-          <div v-show="!beforePullDown">
-            <div v-show="isPullingDown">
-              <span>加载中...</span>
-            </div>
-            <div v-show="!isPullingDown">
-              <span>更新成功</span>
-            </div>
+          <div v-show="!isPullingDown">
+            <span>更新成功</span>
           </div>
         </div>
-        <!-- <div ref="wrapper" class="scroll-wrapper">
-    <div class="scroll-content"> -->
-        <slot> </slot>
       </div>
+      <slot> </slot>
     </div>
   </div>
 </template>
@@ -100,27 +96,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.pulldown {
-  height: 100%;
-}
-
 .pulldown-bswrapper {
   position: relative;
   height: 100%;
-  padding: 0 10px;
-  border: 1px solid #ccc;
   overflow: hidden;
 }
 
-.pulldown-list {
-  padding: 0;
-}
-.pulldown-list-item {
-  padding: 10px 0;
-  list-style: none;
-  border-bottom: 1px solid #ccc;
-}
-.pulldown-wrapper {
+.pulldown-tips-wrapper {
   position: absolute;
   width: 100%;
   padding: 20px;
