@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie9 ie9" {{ HTML_ATTRS }}><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html {{ HTML_ATTRS }}>
+<!--<![endif]-->
+
+<head {{ HEAD_ATTRS }}>
+  {{ HEAD }}
+  <script>
+    if (!(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+      window.location.href = "http://www.codemongo.com"
+    }
+  </script>
+
+  <script type="text/javascript">
+    window.addEventListener('DOMContentLoaded', () => {
+      document.documentElement.style.fontSize = document.documentElement.clientWidth / 3.75 + 'px';
+
+      setTimeout(() => {
+        document.body.style.display = 'block';
+      }, 10);
+    }, false);
+  </script>
+</head>
+
+<body {{ BODY_ATTRS }} style="display:none;">
+  {{ APP }}
+</body>
+
+</html>
