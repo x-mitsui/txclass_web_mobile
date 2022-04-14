@@ -89,3 +89,5 @@ sw.*
 # Vim swap files
 *.swp
 server/configs/qiniu.js
+config/config.js
+nuxt.config.js

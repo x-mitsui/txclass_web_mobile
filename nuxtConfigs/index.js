@@ -81,12 +81,11 @@ export default {
   server: {
     port: 3008, // default: 3000
     host: '0.0.0.0', // default: localhost,
-    // timing: false,
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    publicPath: '//txmobileres.codemongo.com/',
+    publicPath: 'http://txmobileres.codemongo.com/',
     //   vendor: ['axios'], // 为防止重复打包
     extend(config, { isClient, isDev, isServer }) {
       // Extend only webpack config for client-bundle
@@ -97,8 +96,6 @@ export default {
     },
     ...postcssConf,
   },
-  // target: 'server',
-  // ssr: true,
   router: {
     // middleware: ['auth'], // 全局路由中间件
   },

@@ -3,8 +3,8 @@ export const axios = {
   proxy: true,
   credential: true,
   retry: { retris: 3 },
-  // baseUrl: 'http://localhost:3008/api',
-  prefix: '/api',
+  // bserURL = http://[HOST]:[PORT][PREFIX]
+  baseUrl: 'http://localhost:3008/',
   headers: {
     common: {},
     get: {},
@@ -13,10 +13,8 @@ export const axios = {
 }
 export const proxy = {
   '/api': {
+    // 通过 /api 开头的请求，都会被代理到 target(目标接口域名)
     target: URL.API_BASE_URL, // 目标接口域名
-    changeOrigin: true,
-    pathRewrite: {
-      '^/api': '/', // 把 /api 替换成 /
-    },
+    // changeOrigin: true,// 默认为真，和Koa-Proxy的VaryOrigin功能相同
   },
 }
