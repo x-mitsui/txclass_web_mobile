@@ -49,8 +49,6 @@ class QiniuUploadPlugin {
       'QiniuUploadPlugin',
       (compilation, callback) => {
         // 先返回构建结果，然后异步上传
-        // console.log('百度度多多所所所所所:', '百度度多多所所所所所')
-        // console.log('1次:', data) // console.log('data:', data)
         consola.log('data:', this.qiniuConfig.publicPath)
         callback()
         const assetsPromise = []
@@ -58,7 +56,7 @@ class QiniuUploadPlugin {
         Object.keys(compilation.assets).forEach((file) => {
           // 上传非html文件
           if (!/.html$/.test(file) && !/server/.test(file)) {
-            consola.log('file:', file)
+            // consola.log('file:', file)
 
             assetsPromise.push(this.uploadFile(file))
           }
@@ -80,7 +78,7 @@ class QiniuUploadPlugin {
     const localFile = path.join(this.qiniuConfig.publicPath || '', filename)
     return new Promise((resolve, reject) => {
       // 文件上传
-      consola.log(`上传文件${key}...`)
+      // consola.log(`上传文件${key}...`)
       const uploadToken =
         coverUploadToken || this.qiniuAuthenticationConfig.uploadToken
       const putExtra = new qiniu.form_up.PutExtra()
@@ -96,7 +94,7 @@ class QiniuUploadPlugin {
           }
           if (respInfo.statusCode == 200) {
             resolve(respInfo)
-            consola.log(`文件：${key}，上传成功！`)
+            // consola.log(`文件：${key}，上传成功！`)
           } else if (
             this.qiniuConfig.cover &&
             (respInfo.status === 614 || respInfo.statusCode === 614)
