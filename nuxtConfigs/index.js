@@ -39,7 +39,9 @@ export default {
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
-  alias: { server: `<rootDir>/server` },
+  alias: {
+    // server: `<rootDir>/server`
+  },
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@/assets/styles/reset.css',
@@ -87,19 +89,16 @@ export default {
     publicPath: '//txmobileres.codemongo.com/',
     //   vendor: ['axios'], // 为防止重复打包
     extend(config, { isClient, isDev, isServer }) {
-      // console.log('www:', www)
-      // // eslint-disable-next-line no-constant-condition
-      // // if (2 - 1 === 1) return
       // Extend only webpack config for client-bundle
       const webpackConfig = webpackConf({ isClient, isDev, isServer })
-
+      // console.log('webpackConfig.plugins:', webpackConfig.plugins)
       config.plugins = [...config.plugins, ...webpackConfig.plugins]
       config.devtool = webpackConfig.devtool
     },
     ...postcssConf,
-    // plugins: [...WebpackPlugins()],
   },
-
+  // target: 'server',
+  // ssr: true,
   router: {
     // middleware: ['auth'], // 全局路由中间件
   },
@@ -107,14 +106,12 @@ export default {
   serverMiddleware: [
     // Will register redirect-ssl npm package
     // 'redirect-ssl',
-
     // Will register file from project server-middleware directory to handle /server-middleware/* requires
     { path: '/server-middleware', handler: '~/server-middleware/index.js' },
     { path: '/get_home_data', handler: getHomeData },
     { path: '/get_course_tab_data', handler: getCourseTabData },
     { path: '/get_course_data', handler: getCourseData },
-
     // We can create custom instances too
-    // { path: '/static2', handler: serveStatic(__dirname + '/static2') }
+    // { path: '/static2', handler: serveStatic(__dirname + '/static') },
   ],
 }
