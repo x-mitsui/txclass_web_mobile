@@ -93,3 +93,4 @@ config/config.js
 nuxt.config.js
 deploy.config.js
 server/configs/db_config.js
+nuxtConfigs/index.js
