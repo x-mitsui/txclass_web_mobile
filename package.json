@@ -7,6 +7,7 @@
     "build": "node nuxtConfigs/cp-nuxt-config && NODE_ENV=production nuxt build",
     "stage": "DEBUG=log:* NODE_ENV=production nuxt start",
     "start": "nuxt start",
+    "prd": "pm2 startOrRestart deploy.config.js --env production",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext \".js,.vue\" --ignore-path .gitignore .",
     "lint:prettier": "prettier --check .",
